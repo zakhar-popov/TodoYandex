@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.zakhardev.todolist"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.zakhardev.todolist"
@@ -40,6 +40,13 @@ android {
 }
 
 dependencies {
+
+    // логирование
+    implementation(libs.slf4j.api)
+    implementation(libs.logback.android)
+
+    // leaks
+    // debugImplementation(libs.leakcanary.android)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
