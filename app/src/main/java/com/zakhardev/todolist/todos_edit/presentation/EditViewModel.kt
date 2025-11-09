@@ -8,12 +8,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.zakhardev.todolist.todos_list.data.TodosRepository
 import com.zakhardev.todolist.todos_list.domain.Importance
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class EditViewModel(
+@HiltViewModel
+class EditViewModel @Inject constructor(
     private val repository: TodosRepository
 ) : ViewModel() {
 

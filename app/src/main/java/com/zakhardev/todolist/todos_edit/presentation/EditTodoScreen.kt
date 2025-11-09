@@ -41,6 +41,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.unit.dp
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.zakhardev.todolist.todos_edit.presentation.components.AnimatedColorPickerContainer
@@ -55,7 +56,7 @@ fun EditTodoScreen(
     todoUid: String?,
     onBack: () -> Unit,
     modifier: Modifier = Modifier,
-    editViewModel: EditViewModel = viewModel(),
+    editViewModel: EditViewModel = hiltViewModel(),
 ) {
     LaunchedEffect(todoUid) {
         if (todoUid != null) {
