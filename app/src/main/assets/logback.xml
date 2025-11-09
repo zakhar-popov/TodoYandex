@@ -8,7 +8,7 @@
         </encoder>
     </appender>
 
-    <logger name="com.zakhardev.todolist.notes_list.data.FileStorage" level="DEBUG" />
+    <logger name="com.zakhardev.todolist.todos_list.data.FileStorage" level="DEBUG" />
 
     <root level="INFO">
         <appender-ref ref="LOGCAT"/>

@@ -1,4 +1,4 @@
-package com.zakhardev.todolist.notes_edit.presentation.components
+package com.zakhardev.todolist.todos_edit.presentation.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.lazy.LazyRow
@@ -6,7 +6,7 @@ import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
-import com.zakhardev.todolist.notes_list.domain.Importance
+import com.zakhardev.todolist.todos_list.domain.Importance
 
 @Composable
 fun ImportanceSelector(
