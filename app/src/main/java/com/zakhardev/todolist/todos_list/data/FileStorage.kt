@@ -1,10 +1,11 @@
-package com.zakhardev.todolist.notes_list.data
+package com.zakhardev.todolist.todos_list.data
 
 import android.content.Context
-import com.zakhardev.todolist.notes_list.domain.TodoItem
-import com.zakhardev.todolist.notes_list.domain.TodoItemJson
-import com.zakhardev.todolist.notes_list.domain.TodoItemJson.json
+import com.zakhardev.todolist.todos_list.domain.TodoItem
+import com.zakhardev.todolist.todos_list.domain.TodoItemJson
+import com.zakhardev.todolist.todos_list.domain.TodoItemJson.json
 import org.json.JSONArray
+import org.slf4j.LoggerFactory
 import java.io.File
 import java.time.Instant
 import java.util.UUID
@@ -14,7 +15,7 @@ class FileStorage(
     private val fileName: String = "todos.json",
     private val selfDestructGraceMs: Long = 0L
 ) {
-    private val log = org.slf4j.LoggerFactory.getLogger(FileStorage::class.java)
+    private val log = LoggerFactory.getLogger(FileStorage::class.java)
 
     private val itemsMutable = mutableListOf<TodoItem>()
     val items: List<TodoItem> get() = itemsMutable
@@ -40,7 +41,7 @@ class FileStorage(
         }
     }
 
-    fun remove(uid: UUID): Boolean {
+    fun remove(uid: String): Boolean {
         log.info("remove uid={}", uid)
 
         val idx = itemsMutable.indexOfFirst { it.uid == uid }

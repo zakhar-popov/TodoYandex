@@ -1,8 +1,7 @@
-package com.zakhardev.todolist.notes_edit.presentation.components
+package com.zakhardev.todolist.todos_edit.presentation.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text

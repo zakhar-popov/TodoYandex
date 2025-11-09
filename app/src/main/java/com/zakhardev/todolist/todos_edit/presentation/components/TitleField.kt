@@ -1,4 +1,4 @@
-package com.zakhardev.todolist.notes_edit.presentation.components
+package com.zakhardev.todolist.todos_edit.presentation.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn

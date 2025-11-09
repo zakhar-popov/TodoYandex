@@ -1,8 +1,6 @@
-package com.zakhardev.todolist.notes_list.domain
+package com.zakhardev.todolist.todos_list.domain
 
 import android.graphics.Color
-import android.os.Build
-import androidx.annotation.RequiresApi
 import org.json.JSONObject
 import java.time.Instant
 import java.util.UUID
@@ -10,12 +8,8 @@ import java.util.UUID.randomUUID
 
 object TodoItemJson {
     fun parse(json: JSONObject): TodoItem? {
+        val uid = json.optString("uid", UUID.randomUUID().toString())
         val text = json.optString("text", null) ?: return null
-
-        val uid = json.optString("uid", null)
-            ?.let { runCatching { UUID.fromString(it) }.getOrNull() }
-            ?: randomUUID()
-
         val importance = json.optString("importance", "NORMAL").let { s ->
             when (s.uppercase()) {
                 "LOW" -> Importance.LOW
@@ -46,7 +40,7 @@ object TodoItemJson {
     val TodoItem.json: JSONObject
         get() {
             val obj = JSONObject()
-            obj.put("uid", uid.toString())
+            obj.put("uid", uid)
             obj.put("text", text)
             if (importance != Importance.NORMAL) {
                 obj.put("importance", importance.name)
