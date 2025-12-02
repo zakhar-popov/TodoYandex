@@ -1,8 +1,10 @@
 package com.zakhardev.todolist.app.di
 
 import android.content.Context
-import com.zakhardev.todolist.todos_list.data.FileStorage
-import com.zakhardev.todolist.todos_list.data.TodosRepository
+import com.zakhardev.todolist.todos_list.data.datasourse.FakeTodosBackend
+import com.zakhardev.todolist.todos_list.data.datasourse.FileStorage
+import com.zakhardev.todolist.todos_list.data.repository.TodosRepository
+import com.zakhardev.todolist.todos_list.domain.repository.TodosBackend
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,8 +24,15 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideTodosRepository(
-        storage: FileStorage
-    ): TodosRepository = TodosRepository(storage = storage)
+    fun provideTodosBackend(): TodosBackend = FakeTodosBackend()
 
+    @Provides
+    @Singleton
+    fun provideTodosRepository(
+        storage: FileStorage,
+        backend: TodosBackend
+    ): TodosRepository = TodosRepository(
+        storage = storage,
+        backend = backend
+    )
 }

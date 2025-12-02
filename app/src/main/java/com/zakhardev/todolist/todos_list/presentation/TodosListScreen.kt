@@ -30,9 +30,6 @@ fun TodosListScreen(
     modifier: Modifier = Modifier,
     listViewModel: TodosListViewModel = hiltViewModel()
 ) {
-    LaunchedEffect(Unit) {
-        listViewModel.loadTodos()
-    }
     val state by listViewModel.state.collectAsStateWithLifecycle()
 
     Scaffold(

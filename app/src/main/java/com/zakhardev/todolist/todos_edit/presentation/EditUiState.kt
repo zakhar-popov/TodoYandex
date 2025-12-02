@@ -1,11 +1,11 @@
 package com.zakhardev.todolist.todos_edit.presentation
 
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Color.Companion
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.text.input.TextFieldValue
-import com.zakhardev.todolist.todos_list.domain.Importance
-import com.zakhardev.todolist.todos_list.domain.TodoItem
+import com.zakhardev.todolist.todos_list.domain.model.Importance
+import com.zakhardev.todolist.todos_list.domain.model.TodoItem
+import java.time.Instant
 import java.util.UUID
 
 data class EditUiState(
@@ -29,7 +29,7 @@ data class EditUiState(
         text = text.text,
         importance = importance,
         color = colorInt,
-        deadline = deadlineMillis?.let { java.time.Instant.ofEpochMilli(it) },
+        deadline = deadlineMillis?.let { Instant.ofEpochMilli(it) },
         isDone = isDone
     )
 

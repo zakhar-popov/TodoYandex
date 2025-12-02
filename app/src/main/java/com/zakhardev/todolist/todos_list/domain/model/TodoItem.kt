@@ -1,4 +1,4 @@
-package com.zakhardev.todolist.todos_list.domain
+package com.zakhardev.todolist.todos_list.domain.model
 
 import java.time.Instant
 import java.util.UUID

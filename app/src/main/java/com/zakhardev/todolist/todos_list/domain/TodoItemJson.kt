@@ -1,10 +1,11 @@
 package com.zakhardev.todolist.todos_list.domain
 
 import android.graphics.Color
+import com.zakhardev.todolist.todos_list.domain.model.Importance
+import com.zakhardev.todolist.todos_list.domain.model.TodoItem
 import org.json.JSONObject
 import java.time.Instant
 import java.util.UUID
-import java.util.UUID.randomUUID
 
 object TodoItemJson {
     fun parse(json: JSONObject): TodoItem? {
