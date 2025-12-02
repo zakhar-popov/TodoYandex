@@ -6,7 +6,7 @@ import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
-import com.zakhardev.todolist.todos_list.domain.Importance
+import com.zakhardev.todolist.todos_list.domain.model.Importance
 
 @Composable
 fun ImportanceSelector(

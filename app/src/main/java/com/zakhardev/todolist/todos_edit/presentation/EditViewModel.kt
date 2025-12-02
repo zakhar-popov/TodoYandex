@@ -6,8 +6,8 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.zakhardev.todolist.todos_list.data.TodosRepository
-import com.zakhardev.todolist.todos_list.domain.Importance
+import com.zakhardev.todolist.todos_list.data.repository.TodosRepository
+import com.zakhardev.todolist.todos_list.domain.model.Importance
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -25,12 +25,12 @@ class EditViewModel @Inject constructor(
 
     fun load(todoUid: String) {
         viewModelScope.launch {
-            val existing = repository.getById(todoUid)
-
-            if (existing != null) {
-                _state.value = EditUiState.fromDomain(existing)
-            } else {
-                _state.value = EditUiState(loading = false)
+            repository.getByIdFlow(todoUid).collect { existing ->
+                if (existing != null) {
+                    _state.value = EditUiState.fromDomain(existing)
+                } else {
+                    _state.value = EditUiState(loading = false)
+                }
             }
         }
     }

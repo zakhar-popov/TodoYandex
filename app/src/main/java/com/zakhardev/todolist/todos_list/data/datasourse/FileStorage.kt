@@ -1,14 +1,13 @@
-package com.zakhardev.todolist.todos_list.data
+package com.zakhardev.todolist.todos_list.data.datasourse
 
 import android.content.Context
-import com.zakhardev.todolist.todos_list.domain.TodoItem
+import com.zakhardev.todolist.todos_list.domain.model.TodoItem
 import com.zakhardev.todolist.todos_list.domain.TodoItemJson
 import com.zakhardev.todolist.todos_list.domain.TodoItemJson.json
 import org.json.JSONArray
 import org.slf4j.LoggerFactory
 import java.io.File
 import java.time.Instant
-import java.util.UUID
 
 class FileStorage(
     private val context: Context,

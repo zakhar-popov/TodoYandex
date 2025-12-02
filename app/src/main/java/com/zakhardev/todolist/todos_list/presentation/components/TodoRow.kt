@@ -20,7 +20,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.zakhardev.todolist.todos_list.domain.TodoItem
+import com.zakhardev.todolist.todos_list.domain.model.TodoItem
 import java.text.DateFormat
 import java.util.Date
 
