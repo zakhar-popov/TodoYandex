@@ -6,4 +6,5 @@ interface TodosBackend {
     suspend fun getAll(): List<TodoItem>
     suspend fun upsert(item: TodoItem)
     suspend fun delete(uid: String)
+    suspend fun patchAll(items: List<TodoItem>): List<TodoItem>
 }

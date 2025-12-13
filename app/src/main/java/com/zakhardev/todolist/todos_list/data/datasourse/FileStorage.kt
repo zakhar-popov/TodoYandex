@@ -100,4 +100,13 @@ class FileStorage(
             false
         }
     }
+
+    fun replaceAll(newItems: List<TodoItem>) {
+        itemsMutable.clear()
+        newItems.forEach { item ->
+            if (!shouldSelfDestruct(item)) {
+                itemsMutable += item
+            }
+        }
+    }
 }

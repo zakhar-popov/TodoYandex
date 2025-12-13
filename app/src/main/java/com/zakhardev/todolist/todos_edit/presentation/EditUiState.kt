@@ -1,6 +1,7 @@
 package com.zakhardev.todolist.todos_edit.presentation
 
-import androidx.compose.ui.graphics.Color
+import android.graphics.Color.*
+import androidx.compose.ui.graphics.Color.Companion.hsv
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.text.input.TextFieldValue
 import com.zakhardev.todolist.todos_list.domain.model.Importance
@@ -22,7 +23,7 @@ data class EditUiState(
     val showColorPicker: Boolean = false,
     val loading: Boolean = true
 ) {
-    private val colorInt: Int get() = Color.hsv(customHue, customSat, customVal).toArgb()
+    private val colorInt: Int get() = hsv(customHue, customSat, customVal).toArgb()
 
     fun toDomain(): TodoItem = TodoItem(
         uid = uid,
@@ -34,17 +35,22 @@ data class EditUiState(
     )
 
     companion object {
-        fun fromDomain(item: TodoItem): EditUiState = EditUiState(
-            uid = item.uid,
-            text = TextFieldValue(item.text),
-            deadlineMillis = item.deadline?.toEpochMilli(),
-            isDone = item.isDone,
-            importance = item.importance,
-            customHue = 120f,
-            customSat = 0.0f,
-            customVal = 1.0f,
-            selectedFromCustom = false,
-            loading = false
-        )
+        fun fromDomain(item: TodoItem): EditUiState {
+            val hsv = FloatArray(3)
+            colorToHSV(item.color, hsv)
+
+            return EditUiState(
+                uid = item.uid,
+                text = TextFieldValue(item.text),
+                deadlineMillis = item.deadline?.toEpochMilli(),
+                isDone = item.isDone,
+                importance = item.importance,
+                customHue = hsv[0],
+                customSat = hsv[1],
+                customVal = hsv[2],
+                selectedFromCustom = false,
+                loading = false
+            )
+        }
     }
 }
