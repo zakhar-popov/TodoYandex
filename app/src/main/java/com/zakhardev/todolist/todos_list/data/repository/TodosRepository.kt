@@ -25,12 +25,35 @@ class TodosRepository(
     init {
         scope.launch {
             loadFromCache()
+            synchronize()
         }
     }
 
     private suspend fun loadFromCache() = withContext(Dispatchers.IO) {
         storage.load()
         _itemsFlow.value = storage.items
+    }
+
+    suspend fun synchronize(): Boolean = withContext(Dispatchers.IO) {
+        val okLoad = storage.load()
+        if (!okLoad) return@withContext false
+
+        val local = storage.items
+
+        val serverList = runCatching {
+            if (local.isEmpty()) {
+                backend.getAll()
+            } else {
+                backend.patchAll(local)
+            }
+        }.getOrElse { return@withContext false }
+
+        // верим серверу
+        storage.replaceAll(serverList)
+
+        val okSave = storage.save()
+        if (okSave) _itemsFlow.value = storage.items
+        okSave
     }
 
     fun getByIdFlow(uid: String): Flow<TodoItem?> =
