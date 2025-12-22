@@ -1,13 +1,19 @@
 package com.zakhardev.todolist.app.di
 
 import android.content.Context
+import androidx.room.Room
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.zakhardev.todolist.todos_list.data.api.AuthInterceptor
 import com.zakhardev.todolist.todos_list.data.api.TodosApi
 import com.zakhardev.todolist.todos_list.data.datasourse.RemoteTodosBackend
 import com.zakhardev.todolist.todos_list.data.datasourse.FileStorage
+import com.zakhardev.todolist.todos_list.data.datasourse.FileTodosLocalCache
+import com.zakhardev.todolist.todos_list.data.datasourse.RoomTodosLocalCache
 import com.zakhardev.todolist.todos_list.data.repository.TodosRepository
+import com.zakhardev.todolist.todos_list.data.room.MIGRATION_1_2
+import com.zakhardev.todolist.todos_list.data.room.TodosDatabase
 import com.zakhardev.todolist.todos_list.domain.repository.TodosBackend
+import com.zakhardev.todolist.todos_list.domain.repository.TodosLocalCache
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -77,13 +83,31 @@ object AppModule {
         @ApplicationContext context: Context
     ): FileStorage = FileStorage(context = context)
 
+//    @Provides
+//    @Singleton
+//    fun provideLocalCache(storage: FileStorage): TodosLocalCache =
+//        FileTodosLocalCache(storage)
+
+    @Provides
+    @Singleton
+    fun provideDb(@ApplicationContext ctx: Context): TodosDatabase =
+        Room.databaseBuilder(ctx, TodosDatabase::class.java, "todos.db")
+            .addMigrations(MIGRATION_1_2)
+            .build()
+
+    @Provides
+    @Singleton
+    fun provideLocalCache(db: TodosDatabase): TodosLocalCache =
+        RoomTodosLocalCache(db.todosDao())
+
     @Provides
     @Singleton
     fun provideTodosRepository(
-        storage: FileStorage,
+        localCache: TodosLocalCache,
         backend: TodosBackend
     ): TodosRepository = TodosRepository(
-        storage = storage,
+        localCache = localCache,
         backend = backend
     )
+
 }
