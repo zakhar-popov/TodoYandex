@@ -92,7 +92,7 @@ object AppModule {
     @Singleton
     fun provideDb(@ApplicationContext ctx: Context): TodosDatabase =
         Room.databaseBuilder(ctx, TodosDatabase::class.java, "todos.db")
-            // .addMigrations(MIGRATION_1_2)
+            .addMigrations(MIGRATION_1_2)
             .build()
 
     @Provides

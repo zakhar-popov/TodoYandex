@@ -11,6 +11,5 @@ data class TodoEntity(
     val color: Int,
     val deadlineEpochMs: Long?,
     val isDone: Boolean,
-
-   // val createdAtEpochMs: Long
+    val createdAtEpochMs: Long
 )

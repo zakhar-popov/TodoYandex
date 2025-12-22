@@ -22,5 +22,5 @@ fun TodoItem.toEntity(nowEpochMs: Long = System.currentTimeMillis()): TodoEntity
         color = color,
         deadlineEpochMs = deadline?.toEpochMilli(),
         isDone = isDone,
-       // createdAtEpochMs = nowEpochMs
+        createdAtEpochMs = nowEpochMs
     )
