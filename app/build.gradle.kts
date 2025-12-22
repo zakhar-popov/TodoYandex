@@ -72,6 +72,11 @@ dependencies {
     implementation(libs.okhttp)
     implementation(libs.retrofit)
 
+    // рум
+    implementation(libs.androidx.room.runtime)
+    kapt("androidx.room:room-compiler:${rootProject.extra["room_version"]}")
+    implementation(libs.androidx.room.ktx)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
